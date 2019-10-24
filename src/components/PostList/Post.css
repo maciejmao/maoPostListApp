@@ -1,0 +1,13 @@
+.App-post {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.post-title {
+  font-weight: bold;
+}
+
+.post-body {
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,9 @@
+@import "~bulma/css/bulma.css";
+
+.App {
+  text-align: left;
+}
+
+.section {
+  padding: 1.5rem;
+}
