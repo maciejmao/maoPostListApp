@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { apiCommentsRequest, toggleComments } from "../../slices/PostsSlice";
+import {
+  apiCommentsRequest,
+  toggleComments,
+  addComment
+} from "../../slices/PostsSlice";
 import "./Post.css";
 import CommentList from "./CommentList";
+import CommentForm from "./CommentForm";
 
 const Post = ({ id, title, body, commentsData = null }) => {
   const dispatch = useDispatch();
+
+  const addNew = useCallback(payload => dispatch(addComment(payload)), [
+    dispatch
+  ]);
 
   const { comments, loading, error, isFetched, isOpen } = commentsData
     ? commentsData
@@ -21,7 +30,7 @@ const Post = ({ id, title, body, commentsData = null }) => {
           className="post-button button is-small"
           onClick={() => dispatch(toggleComments({ id }))}
         >
-          {isOpen ? "Hide comments" : "Show commments"}
+          {isOpen ? "Hide comments" : "Show comments"}
         </button>
       ) : (
         <button
@@ -38,6 +47,8 @@ const Post = ({ id, title, body, commentsData = null }) => {
         loading={loading}
         show={isOpen}
       />
+
+      {isOpen && <CommentForm addNew={addNew} postId={id} />}
     </div>
   );
 };

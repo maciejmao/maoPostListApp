@@ -75,6 +75,17 @@ const Posts = createSlice({
         };
         Object.assign(post, comments);
       }
+    },
+    addComment: (state, action) => {
+      const post = getPostObj(state, action.payload.postId);
+      const comment = {
+        postId: action.payload.postId,
+        id: action.payload.id,
+        name: action.payload.name,
+        email: action.payload.email,
+        body: action.payload.body
+      };
+      if (post) post.commentsData.comments.push(comment);
     }
   }
 });
@@ -86,7 +97,8 @@ export const {
   apiCommentsRequest,
   apiCommentsSuccess,
   apiCommentsFailure,
-  toggleComments
+  toggleComments,
+  addComment
 } = Posts.actions;
 
 export default Posts.reducer;
