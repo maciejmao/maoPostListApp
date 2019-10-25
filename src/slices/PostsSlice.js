@@ -1,0 +1,92 @@
+import { createSlice } from "redux-starter-kit";
+
+const initialState = {
+  loading: false,
+  posts: null,
+  error: null
+};
+
+const getPostObj = (state, postId) =>
+  state.posts.find(item => item.id === postId);
+
+const Posts = createSlice({
+  name: "Posts",
+  initialState,
+  reducers: {
+    apiPostsRequest: state => ({ ...state, loading: true, error: null }),
+    apiPostsSuccess: (state, action) => ({
+      ...state,
+      loading: false,
+      posts: action.payload
+    }),
+    apiPostsFailure: (state, action) => ({
+      ...state,
+      loading: false,
+      posts: null,
+      error: action.payload
+    }),
+    apiCommentsRequest: (state, action) => {
+      const post = getPostObj(state, action.payload.id);
+      const comments = {
+        commentsData: {
+          loading: true,
+          comments: null,
+          error: null,
+          isFetched: false,
+          isOpen: false
+        }
+      };
+      if (post) Object.assign(post, comments);
+    },
+    apiCommentsSuccess: (state, action) => {
+      const post = getPostObj(state, action.payload.id);
+      const comments = {
+        commentsData: {
+          loading: false,
+          comments: action.payload.comments,
+          error: null,
+          isFetched: true,
+          isOpen: true
+        }
+      };
+      if (post) Object.assign(post, comments);
+    },
+    apiCommentsFailure: (state, action) => {
+      const post = getPostObj(state, action.payload.id);
+      const comments = {
+        commentsData: {
+          loading: false,
+          comments: null,
+          error: action.payload.error,
+          isFetched: false,
+          isOpen: false
+        }
+      };
+      if (post) Object.assign(post, comments);
+    },
+    toggleComments: (state, action) => {
+      const post = getPostObj(state, action.payload.id);
+      if (post) {
+        const comments = {
+          commentsData: {
+            ...post.commentsData,
+            isOpen: !post.commentsData.isOpen
+          }
+        };
+        Object.assign(post, comments);
+      }
+    }
+  }
+});
+
+export const {
+  apiPostsRequest,
+  apiPostsSuccess,
+  apiPostsFailure,
+  apiCommentsRequest,
+  apiCommentsSuccess,
+  apiCommentsFailure,
+  toggleComments
+} = Posts.actions;
+
+export default Posts.reducer;

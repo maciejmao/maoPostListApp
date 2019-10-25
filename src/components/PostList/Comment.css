@@ -1,0 +1,12 @@
+.App-comment {
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.comment-name {
+  font-weight: bold;
+}
+
+.comment-email {
+  font-style: italic;
+}

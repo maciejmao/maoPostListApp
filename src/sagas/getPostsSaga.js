@@ -1,14 +1,14 @@
 import axios from "axios";
 import { call, put } from "redux-saga/effects";
-import { apiPostsSuccess, apiPostsFailure } from "../slices/getPostsSlice";
+import { apiPostsSuccess, apiPostsFailure } from "../slices/PostsSlice";
 
 //api mockup
-import mockupData from "../api/posts.json";
-const mockup = true;
+//import mockupData from "../api/posts.json";
+//const mockup = true;
 
 export default function* getPosts() {
   try {
-    const response = yield call(getData);
+    const response = yield call(getPostsData);
     const respdata = response.data || response;
     yield put(apiPostsSuccess(respdata));
   } catch (error) {
@@ -17,8 +17,8 @@ export default function* getPosts() {
   }
 }
 
-function getData() {
-  if (mockup && mockupData) return mockupData;
+function getPostsData() {
+  //if (mockup && mockupData) return mockupData;
 
   return axios({
     method: "get",

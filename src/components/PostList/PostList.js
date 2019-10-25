@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./PostList.css";
+import Loader from "../elements/Loader/Loader";
 import Notify from "../elements/Notify/Notify";
 import Post from "./Post";
 
 const PostList = () => {
-  const { posts } = useSelector(state => state.postsData);
+  const { loading, error, posts } = useSelector(state => state.postsData);
   return (
     <>
       {posts &&
@@ -20,6 +21,12 @@ const PostList = () => {
             Sorry, no results for this time, try again
           </Notify>
         ))}
+
+      {error && (
+        <Notify type="error">Error, something went wrong! ({error})</Notify>
+      )}
+
+      {loading && <Loader />}
     </>
   );
 };

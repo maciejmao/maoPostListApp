@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import getPostsReducer from "../slices/getPostsSlice";
+import PostsReducer from "../slices/PostsSlice";
 
 export default combineReducers({
-  postsData: getPostsReducer
+  postsData: PostsReducer
 });

@@ -1,14 +1,8 @@
-.App-loader {
-  animation: App-logo-spin infinite 20s linear;
-  height: 15vmin;
-  pointer-events: none;
+.App-wraploader {
+  margin: 1rem 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-loader {
+  height: 5vmin;
+  width: 5vmin;
 }

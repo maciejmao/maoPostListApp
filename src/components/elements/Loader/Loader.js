@@ -1,11 +1,10 @@
 import React from "react";
-import loader from "./logo.svg";
 import "./Loader.css";
 
 const Loader = () => {
   return (
     <div className="App-wraploader">
-      <img src={loader} className="App-loader" alt="loader" />
+      <div className="App-loader loader is-loading"></div>
     </div>
   );
 };
