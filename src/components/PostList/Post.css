@@ -7,7 +7,15 @@
   font-weight: bold;
 }
 
+.post-fav .post-title {
+  background-color: #bfffea;
+}
+
 .post-body {
   margin-bottom: 0.25rem;
   font-size: 0.9rem;
+}
+
+.post-button {
+  margin-right: 0.5rem;
 }

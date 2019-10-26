@@ -3,13 +3,14 @@ import { useDispatch } from "react-redux";
 import {
   apiCommentsRequest,
   toggleComments,
-  addComment
+  addComment,
+  toggleFav
 } from "../../slices/PostsSlice";
 import "./Post.css";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
 
-const Post = ({ id, title, body, commentsData = null }) => {
+const Post = ({ id, title, body, commentsData = null, isFav }) => {
   const dispatch = useDispatch();
 
   const addNew = useCallback(payload => dispatch(addComment(payload)), [
@@ -20,8 +21,10 @@ const Post = ({ id, title, body, commentsData = null }) => {
     ? commentsData
     : "";
 
+  const favStyleClass = isFav ? "App-post post-fav" : "App-post";
+
   return (
-    <div className="App-post">
+    <div className={favStyleClass}>
       <h3 className="post-title">{title}</h3>
       <p className="post-body">{body}</p>
 
@@ -40,6 +43,13 @@ const Post = ({ id, title, body, commentsData = null }) => {
           Show comments
         </button>
       )}
+
+      <button
+        className="post-button button is-small"
+        onClick={() => dispatch(toggleFav({ id }))}
+      >
+        {isFav ? "Remove from favs" : "Add to favs"}
+      </button>
 
       <CommentList
         comments={comments}

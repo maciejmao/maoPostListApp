@@ -16,11 +16,15 @@ const Posts = createSlice({
   initialState,
   reducers: {
     apiPostsRequest: state => ({ ...state, loading: true, error: null }),
-    apiPostsSuccess: (state, action) => ({
-      ...state,
-      loading: false,
-      posts: action.payload
-    }),
+    apiPostsSuccess: (state, action) => {
+      const postData = action.payload.map(obj => ({ ...obj, isFav: false }));
+      const dataObj = {
+        ...state,
+        loading: false,
+        posts: postData
+      };
+      return dataObj;
+    },
     apiPostsFailure: (state, action) => ({
       ...state,
       loading: false,
@@ -88,6 +92,10 @@ const Posts = createSlice({
         body: action.payload.body
       };
       if (post) post.commentsData.comments.push(comment);
+    },
+    toggleFav: (state, action) => {
+      const post = getPostObj(state, action.payload.id);
+      if (post) post.isFav = !post.isFav;
     }
   }
 });
@@ -100,7 +108,8 @@ export const {
   apiCommentsSuccess,
   apiCommentsFailure,
   toggleComments,
-  addComment
+  addComment,
+  toggleFav
 } = Posts.actions;
 
 export default Posts.reducer;
