@@ -1,13 +1,15 @@
 import { createSlice } from "redux-starter-kit";
 
+// selectors
+const getPostObj = (state, postId) =>
+  state.posts.find(item => item.id === postId);
+
+// initial
 const initialState = {
   loading: false,
   posts: null,
   error: null
 };
-
-const getPostObj = (state, postId) =>
-  state.posts.find(item => item.id === postId);
 
 const Posts = createSlice({
   name: "Posts",

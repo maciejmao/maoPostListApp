@@ -4,6 +4,7 @@ import "./App.css";
 import { apiPostsRequest } from "../../slices/PostsSlice";
 import Header from "../Header/Header";
 import PostList from "../PostList/PostList";
+import Pagination from "../Pagination/Pagination";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const App = () => {
       <section className="section">
         <div className="container is-fluid">
           <PostList />
+          <Pagination />
         </div>
       </section>
     </div>

@@ -45,8 +45,8 @@ const CommentForm = ({ addNew, postId }) => {
   };
 
   return (
-    <section className="App-commentForm container">
-      <div className="column is-6">
+    <section className="App-commentForm container is-fluid">
+      <div className="column is-half-desktop">
         <form onSubmit={handleSubmit}>
           <div className="field">
             <div className="control">
