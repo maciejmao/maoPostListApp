@@ -2,7 +2,8 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Pagination.css";
 import Step from "./Step";
-import { setPage, paginateList } from "../../slices/PaginationSlice";
+import { setPage } from "../../slices/PaginationSlice";
+import { paginatedSortedList } from "../../selectors";
 
 const Pagination = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const Pagination = () => {
     dispatch
   ]);
 
-  const paginateItems = useSelector(paginateList);
+  const paginateItems = useSelector(paginatedSortedList);
   const currentPage = useSelector(state => state.pagination.currentPage);
 
   if (!paginateItems || paginateItems.length < 2) {

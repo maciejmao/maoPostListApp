@@ -4,16 +4,15 @@ import "./PostList.css";
 import Loader from "../elements/Loader/Loader";
 import Notify from "../elements/Notify/Notify";
 import Post from "./Post";
-import { paginateList } from "../../slices/PaginationSlice";
+import { paginatedSortedList } from "../../selectors";
 
 const PostList = () => {
   const { loading, error, posts } = useSelector(state => state.postsData);
 
-  const paginateItems = useSelector(paginateList);
+  const prepareItems = useSelector(paginatedSortedList);
   const currentPage = useSelector(state => state.pagination.currentPage);
-  const paginatedList = paginateItems ? paginateItems[currentPage - 1] : null;
-
-  const postsResult = paginatedList ? paginatedList : posts;
+  const prepareList = prepareItems ? prepareItems[currentPage - 1] : null;
+  const postsResult = prepareList ? prepareList : posts;
 
   return (
     <>

@@ -1,0 +1,11 @@
+.App-sort.section {
+  padding: 1.5rem 0;
+}
+
+.App-sort .has-addons {
+  align-items: center;
+}
+
+.sort-label {
+  margin-right: 0.5rem;
+}
