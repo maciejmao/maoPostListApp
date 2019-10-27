@@ -6,6 +6,8 @@ const SortLink = ({ changeSort, type, currentSort, isRev }) => {
   if (type === currentSort) {
     isRev = !isRev;
     sortStyleClass = isRev ? "fa fa-arrow-down" : "fa fa-arrow-up";
+  } else {
+    isRev = false;
   }
 
   return (
