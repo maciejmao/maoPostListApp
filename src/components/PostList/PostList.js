@@ -12,11 +12,12 @@ const PostList = () => {
   const prepareItems = useSelector(paginatedSortedList);
   const currentPage = useSelector(state => state.pagination.currentPage);
   const prepareList = prepareItems ? prepareItems[currentPage - 1] : null;
-  const postsResult = prepareList ? prepareList : posts;
+  const postsResult = prepareList ? prepareList : [];
 
   return (
     <>
-      {postsResult &&
+      {posts &&
+        postsResult &&
         (postsResult.length !== 0 ? (
           <div className="App-postlist">
             {postsResult.map(item => (

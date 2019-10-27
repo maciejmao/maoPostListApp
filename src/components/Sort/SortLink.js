@@ -14,7 +14,7 @@ const SortLink = ({ changeSort, type, currentSort, isRev }) => {
     <p className="control">
       <button
         onClick={() => changeSort({ type, isRev })}
-        className="button is-outlined"
+        className="button is-outlined is-small"
       >
         <span>{type}</span>
 

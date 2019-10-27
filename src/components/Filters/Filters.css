@@ -1,0 +1,11 @@
+.App-filters.section {
+  padding: 0;
+}
+
+.App-filters .has-addons {
+  align-items: center;
+}
+
+.filters-label {
+  margin-right: 0.5rem;
+}
